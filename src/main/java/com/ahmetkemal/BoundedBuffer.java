@@ -1,34 +1,43 @@
 package com.ahmetkemal;
 
+import java.util.LinkedList;
+
 public class BoundedBuffer {
     private static final int BUFFER_SIZE = 16;
-    private static Object[] itemBuffer;
+    private static LinkedList<Integer> itemBuffer;
     private static int full = 0;
     private static int empty = BUFFER_SIZE;
     private static boolean mutex = false;
 
-    public static void waitMutex(){
+    public void waitMutex(){
         while(mutex){};
         mutex = true;
     }
-    public static void signalMutex(){
+    public void signalMutex(){
         mutex = false;
     }
 
-    public static void waitFull(){
+    public void waitFull(){
         while(full == 0);
         full++;
     }
-    public static void signalFull(){
+    public void signalFull(){
         full--;
     }
 
-    public static void waitEmpty(){
+    public void waitEmpty(){
         while(empty == 0);
         empty--;
     }
-    public static void signalEmpty(){
+    public void signalEmpty(){
         empty++;
+    }
+
+    public void addItem(Integer item){
+        itemBuffer.addLast(item);
+    }
+    public Integer getItem(){
+        return itemBuffer.removeFirst();
     }
 
 }
