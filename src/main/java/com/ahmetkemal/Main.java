@@ -4,11 +4,15 @@ public class Main {
     private static int a = 0;
     private static boolean b = false;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         new Thread(() -> {
-            System.out.println(a);
-            b = true;
+            Producer p1 = new Producer();
         }).start();
+
+        new Thread(() -> {
+            Consumer c1 = new Consumer();
+        }).start();
+
 
     }
 }

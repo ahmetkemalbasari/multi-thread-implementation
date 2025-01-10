@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class BoundedBuffer {
     private static final int BUFFER_SIZE = 16;
-    private static LinkedList<Integer> itemBuffer;
+    private static LinkedList<Integer> itemBuffer = new LinkedList<>();
     private static int full = 0;
     private static int empty = BUFFER_SIZE;
     private static boolean mutex = false;

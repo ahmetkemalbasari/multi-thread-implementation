@@ -6,7 +6,7 @@ public class Consumer extends BoundedBuffer {
         while (true){
             waitFull();
             waitMutex();
-            
+
             Integer item = getItem();
 
             signalMutex();
