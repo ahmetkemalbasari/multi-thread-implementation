@@ -1,16 +1,16 @@
 package com.ahmetkemal;
 
-public class Consumer extends BoundedBuffer {
+public class Consumer {
 
     public Consumer() {
         while (true){
-            waitFull();
-            waitMutex();
+            BoundedBuffer.waitFull();
+            BoundedBuffer.waitMutex();
 
-            Integer item = getItem();
+            Integer item = BoundedBuffer.getItem();
 
-            signalMutex();
-            signalEmpty();
+            BoundedBuffer.signalMutex();
+            BoundedBuffer.signalEmpty();
 
             System.out.println(item); //consume item
         }
